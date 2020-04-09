@@ -25,32 +25,32 @@ Jei taip:
   5) Vartotojas pasirenka, kelių studentų duomenys tame faile bus (1000, 10000, 100000, 1000000, 10000000).
   6) Toliau vartotojas pasirenka, kiek vienas studentas turės namų darbų rezultatų (nuo 1 iki 50).
   7) Pasirinkdamas, kad failus programa sugeneruotų pati, vartotojas automatiškai sutinka, kad visi šie duomenys toliau bus nuskaityti ir  iš jų bus išvestas rezultatas.
-  
+
 Jei ne:
 
-  5) Vartotojas pasirenka, ar duomenis nori pats įvesti, ar kad programa nuskaitytų nuo jau esančio failo. 
-  
+  5) Vartotojas pasirenka, ar duomenis nori pats įvesti, ar kad programa nuskaitytų nuo jau esančio failo.
+
   Jei programa nuskaito failą, tai ji išveda rezultatus. Jei pasirenkama įvesti rankiniu būdų visus studentų duomenis, toliau eina tokia vartotojo veiksmų seka:
-  
+
   6) Vartotojas įveda, kiek iš viso bus studentų.
   7) Vartotojas pasirenka, ar namų darbų bei egzamino rezultatus nori suvesti pats, ar kad programa tuos rezultatus sugeneruotų random.
-  
+
  Jei random:
- 
+
  8) Vartotojas suveda kiekvieno studento vardą ir pavardę.
  9) Vartotojas pasirenka, kiek bus generuojama namų darbų rezultatų (nuo 1 iki 50).
  10) Vartotojas gauna rezultatus
- 
+
  Jei pažymiai bus ne random:
- 
+
  8) Vartotojas suveda kiekvieno studento vardą.
  9) Vartotojas suveda kiekvieno studento namų darbų pažymius (Jei jis jau suvedė visus pažymius, turi įvesti 0)
  10) Vartotojas įveda studento egzamino balą
  11) Vartotojas gauna rezultatą.
- 
- 
+
+
  Po visos šios veiksmų sekos atspausdinami 2 .txt failai pagal galutinio balo rezultatą. Jei galutinis balas < 5, studento duomenys (vardas, pavardė) ir rezultatai išvedami į ("vargsiukai.txt") failą, o jei rezultatai >= 5, tai studento duomenys bei rezultatai išvedami į ("kietuoliai.txt") failą.
- 
+
  Galutinio rezultato formulės:
 
     Galutinis rezultatas = (namų darbų vidurkis) * 0.4 + (egzamino balas) * 0.6;
@@ -73,7 +73,7 @@ Išmatuotas laikas pateikiamas sekundėmis. Namų darbų kiekis sugeneruotuose f
  | 100000 | 0.390096 | 2.88993 | 0.020137 | 0.589707 |
  | 1000000 | 3.80589 | 37.9099 | 0.135065 | 6.92016 |
  | 10000000 | 42.7737 | 534.582 | 1.17489 | 64.5651 |
- 
+
  Išmatuotas laikas pateikiamas sekundėmis. Kiekviename faile yra sugeneruoti 2 namų darbų rezultatai.
 
 Laikai naudojant STL konteinerį vector:
@@ -120,7 +120,7 @@ Duomenų rūšiavimo laikų ir naudojamų STL konteinerių palyginimas:
 **Išvados**
 
 Pati greičiausia ir efektyviausia strategija naudojant STL konteinerius (std::vector, std::list, std::deque) yra trečioji - nepanaudojant nei vieno naujo konteinerio, o įrašant informaciją apie grupę į pačią studento struktūrą. Std::list konteineris iš naudojamų konteinerių laiko prasme išsiskiria kaip efektyviausias.
- 
+
 Duomenų rūšiavimo laikų naudojant/nenaudojant papildomų algoritmų ir naudojant std::vector konteinerį palyginimas:
 
  | Studentų duomenų kiekis | std::vector 1-oji strategija be papildomų algoritmų | std::vector 1-oji strategija su papildomais algoritmais | std::vector 2-oji strategija be papildomų algoritmų | std::vector 2-oji strategija su papildomais algoritmais | std::vector 3-oji strategija be papildomų algoritmų | std::vector 3-oji strategija su papildomais algoritmais |
@@ -130,26 +130,25 @@ Duomenų rūšiavimo laikų naudojant/nenaudojant papildomų algoritmų ir naudo
  | 100000 | 3.27643 | 1.15254 | 0.226233 | 0.06283 | 0.029783 | 0.010969 |
  | 1000000 | 14.7801 | 14.3593 | 0.840429 | 0.686164 | 0.107936 | 0.125697 |
  | 10000000 | 27.639035 | 27.493502 | 2.15946 | 2.0389038 | 0.195848 | 0.1423084 |
- 
+
  **Išvados**
- 
+
  Naudojami algoritmai:
   * std::copy
   * std::partition
- 
+
  Jų panaudojimas spartina studentų rūšiavimą į dvi grupes pagal galutinį balą.
- 
+
  ## Releases
- 
+
  [**v0.1**](https://github.com/gertruda1/Objektinio-programavimo-2-uzduotis/releases/tag/v.0.1)
- 
+
  [**v0.2**](https://github.com/gertruda1/Objektinio-programavimo-2-uzduotis/releases/tag/v0.2)
- 
+
  [**v0.3**](https://github.com/gertruda1/Objektinio-programavimo-2-uzduotis/releases/tag/v0.3)
- 
+
  [**v0.4**](https://github.com/gertruda1/Objektinio-programavimo-2-uzduotis/releases/tag/v0.4)
- 
+
  [**v0.5**](https://github.com/gertruda1/Objektinio-programavimo-2-uzduotis/releases/tag/v0.5)
- 
+
  [**v1.0**](https://github.com/gertruda1/Objektinio-programavimo-2-uzduotis/releases/tag/v1.0)
- 
