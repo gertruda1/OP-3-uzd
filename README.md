@@ -2,6 +2,7 @@
 
 Programa, nuskaitanti duomenis apie studentus ir apskaičiuojanti jų mokslo rezultatus
 
+
 ## Įdiegimo instrukcija
 
 Norint paleisti programą, reikia:
