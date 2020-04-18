@@ -9,6 +9,7 @@
 #include <list>
 #include <numeric>
 #include <fstream>
+#include <sstream>
 #include <cctype>
 #include <random>
 #include <chrono>
@@ -21,7 +22,7 @@ class Rand_int;
 void ArSkaiciusTinkamas (int& skaicius, int pradzia, int pabaiga);
 double rasti_mediana_list (std::list <int> listas);
 double vidurkis_list (std::list<int> listas, int n);
-bool compareAlphabet(student a, student b);
+bool compareAlphabet_list(student a, student b);
 void failugeneravimas (int a, int b);
 void failugeneravimas1000 (int a);
 void failugeneravimas10000 (int a);

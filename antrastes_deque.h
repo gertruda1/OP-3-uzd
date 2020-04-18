@@ -10,6 +10,7 @@
 #include <deque>
 #include <numeric>
 #include <fstream>
+#include <sstream>
 #include <cctype>
 #include <random>
 #include <chrono>
@@ -22,7 +23,7 @@ class Rand_int;
 
 void ArSkaiciusTinkamas (int& skaicius, int pradzia, int pabaiga);
 double rastimediana_deque (std::deque<int> vekt);
-bool compareAlphabet(student a, student b);
+bool compareAlphabet_deque(student a, student b);
 void spausdinimas_deque(std::deque<student> a, std::string b);
 void spausdinimas_deque(std::deque<student> kiet, std::deque<student> vargs, std::string b);
 void failugeneravimas (int a, int b);
@@ -35,7 +36,7 @@ void skaitymas_is_failo_deque (int egz, std::string kas, double ndvid, double nd
 void pirmine_apklausa (std::string &kas, std::string &ar_generuoti, std::string &duomenu_ivedimas, 
 int &koki_faila_generuoti, int &kiek_nd, int &strategija);
 void paskirstymas_deque (std::deque<student> &a);
-bool rikiuojam_pagal_balaD(student a, student  b);
+bool rikiuojam_pagal_balaD_deque(student a, student  b);
 void paskirstymas1_deque (std::deque<student> &a, std::deque<student> &vargs, std::deque<student> &kiet);
 void paskirstymas2_deque (std::deque<student> &a, std::deque<student> &kiet);
 void F_duomenu_ivedimas_deque(double ndsum, int egz, double ndvid, std::string kas, std::deque<student> &studentas);

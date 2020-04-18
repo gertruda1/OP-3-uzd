@@ -2,6 +2,11 @@
 #include "antrastes2.h"
 
 
+bool compareAlphabet_list(const student a, const student b)
+{
+    return a.vardas < b.vardas;
+}
+
 
 double rasti_mediana_list (std::list <int> listas)
 {    
@@ -85,7 +90,7 @@ void skaitymas_is_failo_listas (std::list<student> &studentas, std::string kas)
     nd_rez.clear();
     studentas.push_back(tmp);
     }
-    studentas.sort(compareAlphabet);
+    studentas.sort(compareAlphabet_list);
     duom.close();
 }
 
@@ -241,7 +246,7 @@ void F_duomenu_ivedimas_listas(std::string kas, std::list<student> &studentas)
             else stud.galutinis = 0.4 * rasti_mediana_list(listas) + 0.6 * egz;
             studentas.push_back(stud);
         }
-        studentas.sort(compareAlphabet);
+        studentas.sort(compareAlphabet_list);
 }
 
 void spausdinimas_listas(std::list<student> a, std::string b)

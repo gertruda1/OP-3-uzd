@@ -24,14 +24,14 @@ double rastimediana (std::vector<int> vekt)
     return (double)(size % 2 == 0 ? ((double)(vekt[mid]) + (double)(vekt[mid-1])) / 2 : (double)(vekt[mid]));
 }
 
-bool compareAlphabet(student a, student b)
+bool compareAlphabet(const student1 a, const student1 b)
 {
-    return a.vardas < b.vardas;
+    return a.vardas() < b.vardas();
 }
 
-bool rikiuojam_pagal_balaD(student a, student  b)
+bool rikiuojam_pagal_balaD(const student1 a, const student1  b)
 {
-    return a.galutinis < b.galutinis;
+    return a.galutinis() < b.galutinis();
 }
 
 void failugeneravimas1000 (int a)
@@ -128,7 +128,7 @@ void failugeneravimas10000000 (int a)
     generavimas.close();
 }
 
-void skaitymas_is_failo (int egz, std::string kas, double ndvid, double ndsum, std::vector<student> &studentas)
+void skaitymas_is_failo (int egz, std::string kas, double ndvid, double ndsum, std::vector<student1> &studentas)
 {
     int nd_kiekis_faile = 0;
     std::ifstream duom ("kursiokai.txt");
@@ -160,11 +160,14 @@ void skaitymas_is_failo (int egz, std::string kas, double ndvid, double ndsum, s
         int i = 0;
 
         std::vector<int> nd_rez;
-        student tmp;
+        student1 tmp;
+        std::string vard, pavard;
         int nd;
         while(!duom.eof())
         {
-            duom >> tmp.vardas >> tmp.pavarde;
+            duom >> vard >> pavard;
+            tmp.setVardas(vard);
+            tmp.setPavarde(pavard);
             for (int j = 0; j < nd_kiekis_faile; j++)
             {
                 duom >> nd;
@@ -175,11 +178,11 @@ void skaitymas_is_failo (int egz, std::string kas, double ndvid, double ndsum, s
             {
                 ndsum = accumulate(nd_rez.begin(), nd_rez.end(), 0);
                 ndvid = ndsum / (nd_rez.size());
-                tmp.galutinis = 0.4 *ndvid + 0.6 * egz;
+                tmp.galBalas(ndvid, egz);
             }
             if(kas == "mediana")
             {
-               tmp.galutinis = 0.4 * rastimediana(nd_rez) + 0.6 * egz;
+               tmp.galBalas(nd_rez, rastimediana, egz);
             }
             nd_rez.clear();
             studentas.push_back(tmp);
@@ -269,38 +272,40 @@ void failugeneravimas (int a, int b)
     if (a == 10000000) failugeneravimas10000000(b);
 }
 
-void paskirstymas (std::vector<student> &a)
+void paskirstymas (std::vector<student1> &a)
 {
     for (int i = 0; i < a.size(); i++)
     {
-        if (a[i].galutinis < 5) a[i].grupe = "vargsiukai";
-        else a[i].grupe = "kietiakai";
+        if (a[i].galutinis() < 5) a[i].setGrupe("vargsiukai");
+        else a[i].setGrupe("kietiakai");
     }
 }
 
-void paskirstymas1 (std::vector<student> &a, std::vector<student> &vargs, std::vector<student> &kiet)
+void paskirstymas1 (std::vector<student1> &a, std::vector<student1> &vargs, std::vector<student1> &kiet)
 {
-    int n = std::count_if (a.begin(), a.end(), [](student x) 
+    int n = std::count_if (a.begin(), a.end(), [](student1 x) 
     { 
-        return x.galutinis < 5; 
+        return x.galutinis() < 5; 
           
     } ); 
     vargs.resize(n);  
     kiet.resize(a.size() - n); 
     partition_copy(a.begin(), a.end(), vargs.begin(),  
-                                     kiet.begin(), [](student x) 
+                                     kiet.begin(), [](student1 x) 
     { 
-        return x.galutinis < 5; 
+        return x.galutinis() < 5; 
     }); 
     a.clear();
+
+    
 }
 
-void paskirstymas2 (std::vector<student> &a, std::vector<student> &kiet)
+void paskirstymas2 (std::vector<student1> &a, std::vector<student1> &kiet)
 {
     std::sort(a.begin(), a.end(), rikiuojam_pagal_balaD);
     
     int n = 0;
-        while (a[n].galutinis < 5.0 && n != a.size())
+        while (a[n].galutinis() < 5.0 && n != a.size())
             n++;
 
     std::copy(a.begin() + n, a.end(), std::back_inserter(kiet));
@@ -309,7 +314,7 @@ void paskirstymas2 (std::vector<student> &a, std::vector<student> &kiet)
     a.shrink_to_fit();
 }
 
-void F_duomenu_ivedimas(double ndsum, int egz, double ndvid, std::string kas, std::vector<student> &studentas)
+void F_duomenu_ivedimas(double ndsum, int egz, double ndvid, std::string kas, std::vector<student1> &studentas)
 {
         int m;
         std::cout << "Iveskite, kiek is viso yra studentu " << std::endl;
@@ -338,11 +343,14 @@ void F_duomenu_ivedimas(double ndsum, int egz, double ndvid, std::string kas, st
             }
         }
 
-        student stud;
+        student1 stud;
+        std::string vard, pavard;
         for (int i = 0; i < m; i++)
         {
             std::cout << "Iveskite "<< i + 1 << " studento varda ir pavarde " << std::endl;
-            std::cin >> stud.vardas >> stud.pavarde;
+            std::cin >> vard >> pavard;
+            stud.setVardas(vard);
+            stud.setPavarde(pavard);
 
 
             std::vector<int> vektorius;
@@ -408,14 +416,14 @@ void F_duomenu_ivedimas(double ndsum, int egz, double ndvid, std::string kas, st
             ndvid = ndsum / (kiek - 1);
             if (kas == "vidurkis")
             {
-                stud.galutinis = 0.4 * ndvid + 0.6 * egz;
+                stud.galBalas(ndvid, egz);
             }
-            else stud.galutinis = 0.4 * rastimediana(vektorius) + 0.6 * egz;
+            else stud.galBalas(vektorius, rastimediana, egz);
             studentas.push_back(stud);
         }
 }
 
-void spausdinimas(std::vector<student> a, std::string b)
+void spausdinimas(std::vector<student1> a, std::string b)
 {
 
     std::ofstream rez1 ("vargsiukai.txt");
@@ -425,9 +433,9 @@ void spausdinimas(std::vector<student> a, std::string b)
 
     for (int i = 0; i < a.size(); i++)
     {
-        if (a[i].grupe == "vargsiukai")
-            rez1 << a[i].pavarde << " \t " << a[i].vardas << " \t\t " << std::fixed << std::setprecision(2) <<
-            a[i].galutinis << std::endl;
+        if (a[i].grupe() == "vargsiukai")
+            rez1 << a[i].pavarde() << " \t " << a[i].vardas() << " \t\t " << std::fixed << std::setprecision(2) <<
+            a[i].galutinis() << std::endl;
     }
     rez1.close();
         
@@ -437,13 +445,13 @@ void spausdinimas(std::vector<student> a, std::string b)
     rez2 << "-----------------------------------------------------------" << std::endl;
     for (int i = 0; i < a.size(); i++)
     {
-        if (a[i].grupe == "kietiakai")
-            rez2 << a[i].pavarde << " \t " << a[i].vardas << " \t\t " << std::fixed << std::setprecision(2) <<
-            a[i].galutinis << std::endl;
+        if (a[i].grupe() == "kietiakai")
+            rez2 << a[i].pavarde() << " \t " << a[i].vardas() << " \t\t " << std::fixed << std::setprecision(2) <<
+            a[i].galutinis() << std::endl;
     }
     rez2.close();
 }
-void spausdinimas(std::vector<student> kiet, std::vector<student> vargs, std::string b)
+void spausdinimas(std::vector<student1> kiet, std::vector<student1> vargs, std::string b)
 {
     std::ofstream rez1 ("vargsiukai.txt");
     if (b == "vidurkis") rez1 << "Pavarde \t Vardas \t\t Galutinis (Vid.)" << std::endl;
@@ -452,8 +460,8 @@ void spausdinimas(std::vector<student> kiet, std::vector<student> vargs, std::st
 
     for (int i = 0; i < vargs.size(); i++)
     {
-        rez1 << vargs[i].pavarde << " \t " << vargs[i].vardas << " \t\t " << std::fixed << std::setprecision(2) <<
-        vargs[i].galutinis << std::endl;
+        rez1 << vargs[i].pavarde() << " \t " << vargs[i].vardas() << " \t\t " << std::fixed << std::setprecision(2) <<
+        vargs[i].galutinis() << std::endl;
     }
     rez1.close();
         
@@ -463,8 +471,8 @@ void spausdinimas(std::vector<student> kiet, std::vector<student> vargs, std::st
     rez2 << "-----------------------------------------------------------" << std::endl;
     for (int i = 0; i < kiet.size(); i++)
     {
-            rez2 << kiet[i].pavarde << " \t " << kiet[i].vardas << " \t\t " << std::fixed << std::setprecision(2) <<
-            kiet[i].galutinis << std::endl;
+            rez2 << kiet[i].pavarde() << " \t " << kiet[i].vardas() << " \t\t " << std::fixed << std::setprecision(2) <<
+            kiet[i].galutinis() << std::endl;
     }
     rez2.close();
 }
@@ -489,7 +497,7 @@ void vektorius()
     std::string ar_generuoti;
     std::string duomenu_ivedimas;
     int koki_faila_generuoti, egz, kiek_nd, strategija;
-    std::vector<student> studentas;
+    std::vector<student1> studentas;
     pirmine_apklausa(kas, ar_generuoti, duomenu_ivedimas, koki_faila_generuoti, kiek_nd, strategija);
     
     if(ar_generuoti == "generuoti")
@@ -524,7 +532,7 @@ void vektorius()
         }
         else if (strategija == 1)
         {
-            std::vector<student> vargsiukai, kietiakai;
+            std::vector<student1> vargsiukai, kietiakai;
             start = std::chrono::high_resolution_clock::now();
             paskirstymas1(studentas, vargsiukai, kietiakai);
             end = std::chrono::high_resolution_clock::now();
@@ -539,7 +547,7 @@ void vektorius()
         }
         else
         {
-            std::vector<student> kietiakai;
+            std::vector<student1> kietiakai;
             start = std::chrono::high_resolution_clock::now();
             paskirstymas2(studentas, kietiakai);
             end = std::chrono::high_resolution_clock::now();
@@ -568,13 +576,13 @@ void vektorius()
         }
         else if (strategija == 1)
         {
-            std::vector<student> vargsiukai, kietiakai;
+            std::vector<student1> vargsiukai, kietiakai;
             paskirstymas1(studentas, vargsiukai, kietiakai);
             spausdinimas(kietiakai, vargsiukai, kas);
         }
         else
         {
-            std::vector<student> kietiakai;
+            std::vector<student1> kietiakai;
             std::sort(kietiakai.begin(), kietiakai.end(), compareAlphabet);
             std::sort(studentas.begin(), studentas.end(), compareAlphabet);
             paskirstymas2(studentas, kietiakai);

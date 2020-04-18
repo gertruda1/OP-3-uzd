@@ -1,6 +1,16 @@
 #include "antrastes_deque.h"
 #include "antrastes2.h"
 
+bool compareAlphabet_deque(const student a, const student b)
+{
+    return a.vardas < b.vardas;
+}
+
+bool rikiuojam_pagal_balaD_deque(const student a, const student  b)
+{
+    return a.galutinis < b.galutinis;
+}
+
 
 double rastimediana_deque (std::deque<int> vekt)
 {
@@ -71,7 +81,7 @@ void skaitymas_is_failo_deque (int egz, std::string kas, double ndvid, double nd
             studentas.push_back(tmp);
         }
     
-    std::sort(studentas.begin(), studentas.end() -1, compareAlphabet);
+    std::sort(studentas.begin(), studentas.end() -1, compareAlphabet_deque);
     studentas.pop_back();
     duom.close();
 }
@@ -99,7 +109,7 @@ void paskirstymas1_deque (std::deque<student> &a, std::deque<student> &vargs, st
 
 void paskirstymas2_deque (std::deque<student> &a, std::deque<student> &kiet)
 {
-    std::sort(a.begin(), a.end(), rikiuojam_pagal_balaD);
+    std::sort(a.begin(), a.end(), rikiuojam_pagal_balaD_deque);
     
     int ne = 0;
         while (a[ne].galutinis < 5.0 && ne != a.size())
@@ -337,8 +347,8 @@ void deque()
             diff = end-start;
             std::cout << "dalijimo i dvi grupes laikas: " << diff.count() << std::endl;
 
-            std::sort(kietuoliai.begin(), kietuoliai.end(), compareAlphabet);
-            std::sort(studentas.begin(), studentas.end(), compareAlphabet);
+            std::sort(kietuoliai.begin(), kietuoliai.end(), compareAlphabet_deque);
+            std::sort(studentas.begin(), studentas.end(), compareAlphabet_deque);
             start = std::chrono::high_resolution_clock::now();
             spausdinimas_deque(kietuoliai, studentas, kas);
             end = std::chrono::high_resolution_clock::now();
@@ -369,8 +379,8 @@ void deque()
         {
             std::deque<student> kietiakai;
             paskirstymas2_deque(studentas, kietiakai);
-            std::sort(kietiakai.begin(), kietiakai.end(), compareAlphabet);
-            std::sort(studentas.begin(), studentas.end(), compareAlphabet);
+            std::sort(kietiakai.begin(), kietiakai.end(), compareAlphabet_deque);
+            std::sort(studentas.begin(), studentas.end(), compareAlphabet_deque);
             spausdinimas_deque(kietiakai, studentas, kas);
         }
         
