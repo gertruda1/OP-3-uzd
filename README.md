@@ -85,3 +85,5 @@ laikas yra matuojamas sekundėmis. Namų darbų kiekis sugeneruotuose failuose -
  ## Releases
 
  [**v1.1**](https://github.com/gertruda1/OP-3-uzd/releases/tag/v1.1)
+ 
+ Šioje programos versijoje buvo sukurta nauja klasė "student1", kuri panaudojama vietoj struktūros "student", kai programoje yra naudojami vektoriai. Klasėje yra naudojamas konstruktorius, destruktorius, set'eriai ir get'eriai.
