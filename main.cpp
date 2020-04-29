@@ -6,7 +6,7 @@
 int main ()
 {
     char konteineris; std::cout <<std::endl;
-    student1 lol;
+    
     std::cout << "vector (v) / list (l) / deque (d)? --> "; std::cin >> konteineris;
     koks_konteineris (konteineris, 'v', 'l', 'd');
     if (konteineris == 'v') vektorius();

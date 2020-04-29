@@ -27,11 +27,6 @@ bool compareAlphabet_deque(student a, student b);
 void spausdinimas_deque(std::deque<student> a, std::string b);
 void spausdinimas_deque(std::deque<student> kiet, std::deque<student> vargs, std::string b);
 void failugeneravimas (int a, int b);
-void failugeneravimas1000 (int a);
-void failugeneravimas10000 (int a);
-void failugeneravimas100000 (int a);
-void failugeneravimas1000000 (int a);
-void failugeneravimas10000000 (int a);
 void skaitymas_is_failo_deque (int egz, std::string kas, double ndvid, double ndsum, std::deque<student> &studentas);
 void pirmine_apklausa (std::string &kas, std::string &ar_generuoti, std::string &duomenu_ivedimas, 
 int &koki_faila_generuoti, int &kiek_nd, int &strategija);

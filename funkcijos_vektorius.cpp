@@ -34,99 +34,26 @@ bool rikiuojam_pagal_balaD(const student1 a, const student1  b)
     return a.galutinis() < b.galutinis();
 }
 
-void failugeneravimas1000 (int a)
+void failugeneravimas (int a, int b)
 {
     Rand_int rnd(1, 10);
     std::ofstream generavimas ("kursiokai.txt");
-    generavimas << "vardas \t\t\t pavarde \t\t";
-    for (int i = 1; i <= a; i++)
+    generavimas << std::setw(20) << std::left << "VARDAS" << std::setw(21) <<  "PAVARDE";
+    for (int i = 1; i <= b; i++)
     {
-        generavimas << "ND" << i << "\t\t";
+        generavimas << "ND" << std::setw(8) << std::left << i;
     }
     generavimas << "Egz." << std::endl;
-    for (int i = 1; i <= 1000; i++)
+    
+    for (int i = 1; i <= a; i++)
     {
-        generavimas << "Vardas" << i << " \t\t Pavarde" << i << " \t\t";
-        for (int j = 0; j < a + 1; j++) generavimas << rnd() << "\t\t";
+        generavimas << "Vardas" << std::setw(14) << std::left << i <<  "Pavarde" << std::setw(14) << std::left << i;
+        for (int j = 0; j < b + 1; j++) generavimas << std::setw(10) << std::left << rnd();
         generavimas << std::endl;
     }
     generavimas.close();
 }
 
-void failugeneravimas10000 (int a)
-{
-    Rand_int rnd(1, 10);
-    std::ofstream generavimas ("kursiokai.txt");
-    generavimas << "vardas \t\t\t pavarde \t\t";
-    for (int i = 1; i <= a; i++)
-    {
-        generavimas << "ND" << i << "\t\t";
-    }
-    generavimas << "Egz." << std::endl;
-    for (int i = 1; i <= 10000; i++)
-    {
-        generavimas << "Vardas" << i << " \t\t Pavarde" << i << " \t\t";
-        for (int j = 0; j < a + 1; j++) generavimas << rnd() << "\t\t";
-        generavimas << std::endl;
-    }
-    generavimas.close();
-}
-void failugeneravimas100000 (int a)
-{
-    Rand_int rnd(1, 10);
-    std::ofstream generavimas ("kursiokai.txt");
-    generavimas << "vardas \t\t\t pavarde \t\t";
-    for (int i = 1; i <= a; i++)
-    {
-        generavimas << "ND" << i << "\t\t";
-    }
-    generavimas << "Egz." << std::endl;
-    for (int i = 1; i <= 100000; i++)
-    {
-        generavimas << "Vardas" << i << " \t\t Pavarde" << i << " \t\t";
-        for (int j = 0; j < a + 1; j++) generavimas << rnd() << "\t\t";
-        generavimas << std::endl;
-    }
-    generavimas.close();
-}
-
-void failugeneravimas1000000 (int a)
-{
-    Rand_int rnd(1, 10);
-    std::ofstream generavimas ("kursiokai.txt");
-    generavimas << "vardas \t\t\t pavarde \t\t";
-    for (int i = 1; i <= a; i++)
-    {
-        generavimas << "ND" << i << "\t\t";
-    }
-    generavimas << "Egz." << std::endl;
-    for (int i = 1; i <= 1000000; i++)
-    {
-        generavimas << "Vardas" << i << " \t\t Pavarde" << i << " \t\t";
-        for (int j = 0; j < a + 1; j++) generavimas << rnd() << "\t\t";
-        generavimas << std::endl;
-    }
-    generavimas.close();
-}
-
-void failugeneravimas10000000 (int a)
-{
-    Rand_int rnd(1, 10);
-    std::ofstream generavimas ("kursiokai.txt");
-    generavimas << "vardas \t\t\t pavarde \t\t";
-    for (int i = 1; i <= a; i++)
-    {
-        generavimas << "ND" << i << "\t\t";
-    }
-    generavimas << "Egz." << std::endl;
-    for (int i = 1; i <= 10000000; i++)
-    {
-        generavimas << "Vardas" << i << " \t\t Pavarde" << i << " \t\t";
-        for (int j = 0; j < a + 1; j++) generavimas << rnd() << "\t\t";
-        generavimas << std::endl;
-    }
-    generavimas.close();
-}
 
 void skaitymas_is_failo (int egz, std::string kas, double ndvid, double ndsum, std::vector<student1> &studentas)
 {
@@ -263,14 +190,7 @@ int &koki_faila_generuoti, int &kiek_nd, int &strategija)
     }
 }
 
-void failugeneravimas (int a, int b)
-{
-    if (a == 1000) failugeneravimas1000(b);
-    if (a == 10000) failugeneravimas10000(b);
-    if (a == 100000) failugeneravimas100000(b);
-    if (a == 1000000) failugeneravimas1000000(b);
-    if (a == 10000000) failugeneravimas10000000(b);
-}
+
 
 void paskirstymas (std::vector<student1> &a)
 {
@@ -427,52 +347,56 @@ void spausdinimas(std::vector<student1> a, std::string b)
 {
 
     std::ofstream rez1 ("vargsiukai.txt");
-    if (b == "vidurkis") rez1 << "Pavarde \t Vardas \t\t Galutinis (Vid.)" << std::endl;
-    else rez1 << "Pavarde \t Vardas \t\t Galutinis (Med.) " << std::endl;
+    rez1 << std::setw(20) << std::left << "Pavarde" << std::setw(20) << "Vardas" << std::setw(20);
+    if (b == "vidurkis") rez1 << "Galutinis (Vid.)" << std::endl;
+    else rez1 << "Galutinis (Med.) " << std::endl;
     rez1 << "-----------------------------------------------------------" << std::endl;
 
     for (int i = 0; i < a.size(); i++)
     {
         if (a[i].grupe() == "vargsiukai")
-            rez1 << a[i].pavarde() << " \t " << a[i].vardas() << " \t\t " << std::fixed << std::setprecision(2) <<
-            a[i].galutinis() << std::endl;
+            rez1 << std::setw(20) << std::left << a[i].pavarde() << std::setw(20) << a[i].vardas()  << std::fixed  <<
+            std::setprecision(2) << a[i].galutinis() << std::endl;
     }
     rez1.close();
         
     std::ofstream rez2 ("kietiakai.txt");
-    if (b == "vidurkis") rez2 << "Pavarde \t Vardas \t\t Galutinis (Vid.)" << std::endl;
-    else rez2 << "Pavarde \t Vardas \t\t Galutinis (Med.) " << std::endl;
+    rez2 << std::setw(20) << std::left << "Pavarde" << std::setw(20) << "Vardas" << std::setw(20);
+    if (b == "vidurkis") rez2 << "Galutinis (Vid.)" << std::endl;
+    else rez2 << "Galutinis (Med.)" << std::endl;
     rez2 << "-----------------------------------------------------------" << std::endl;
     for (int i = 0; i < a.size(); i++)
     {
         if (a[i].grupe() == "kietiakai")
-            rez2 << a[i].pavarde() << " \t " << a[i].vardas() << " \t\t " << std::fixed << std::setprecision(2) <<
-            a[i].galutinis() << std::endl;
+            rez2 << std::setw(20) << std::left << a[i].pavarde() << std::setw(20) << a[i].vardas() << std::fixed <<
+             std::setprecision(2) << a[i].galutinis() << std::endl;
     }
     rez2.close();
 }
 void spausdinimas(std::vector<student1> kiet, std::vector<student1> vargs, std::string b)
 {
     std::ofstream rez1 ("vargsiukai.txt");
-    if (b == "vidurkis") rez1 << "Pavarde \t Vardas \t\t Galutinis (Vid.)" << std::endl;
-    else rez1 << "Pavarde \t Vardas \t\t Galutinis (Med.) " << std::endl;
+    rez1 << std::setw(20) << std::left << "Pavarde" << std::setw(20) << "Vardas" << std::setw(20);
+    if (b == "vidurkis") rez1 << "Galutinis (Vid.)" << std::endl;
+    else rez1 << "Galutinis (Med.)" << std::endl;
     rez1 << "-----------------------------------------------------------" << std::endl;
 
     for (int i = 0; i < vargs.size(); i++)
     {
-        rez1 << vargs[i].pavarde() << " \t " << vargs[i].vardas() << " \t\t " << std::fixed << std::setprecision(2) <<
-        vargs[i].galutinis() << std::endl;
+        rez1 << std::setw(20) << std::left << vargs[i].pavarde() << std::setw(20) << vargs[i].vardas() 
+        << std::setw(20) << std::fixed << std::setprecision(2) << vargs[i].galutinis() << std::endl;
     }
     rez1.close();
         
     std::ofstream rez2 ("kietiakai.txt");
-    if (b == "vidurkis") rez2 << "Pavarde \t Vardas \t\t Galutinis (Vid.)" << std::endl;
-    else rez2 << "Pavarde \t Vardas \t\t Galutinis (Med.) " << std::endl;
+    rez2 << std::setw(20) << std::left << "Pavarde" << std::setw(20) << "Vardas" << std::setw(20);
+    if (b == "vidurkis") rez2 << "Galutinis (Vid.)" << std::endl;
+    else rez2 << "Galutinis (Med.)" << std::endl;
     rez2 << "-----------------------------------------------------------" << std::endl;
     for (int i = 0; i < kiet.size(); i++)
     {
-            rez2 << kiet[i].pavarde() << " \t " << kiet[i].vardas() << " \t\t " << std::fixed << std::setprecision(2) <<
-            kiet[i].galutinis() << std::endl;
+            rez2 << std::setw(20) << std::left << kiet[i].pavarde() << std::setw(20) << kiet[i].vardas() 
+            << std::setw(20) << std::fixed << std::setprecision(2) << kiet[i].galutinis() << std::endl;
     }
     rez2.close();
 }

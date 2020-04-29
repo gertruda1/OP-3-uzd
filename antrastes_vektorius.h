@@ -28,11 +28,6 @@ bool rikiuojam_pagal_balaD(const student1 a, const student1  b);
 void spausdinimas(std::vector<student1> a, std::string b);
 void spausdinimas(std::vector<student1> kiet, std::vector<student1> vargs, std::string b);
 void failugeneravimas (int a, int b);
-void failugeneravimas1000 (int a);
-void failugeneravimas10000 (int a);
-void failugeneravimas100000 (int a);
-void failugeneravimas1000000 (int a);
-void failugeneravimas10000000 (int a);
 void skaitymas_is_failo (int egz, std::string kas, double ndvid, double ndsum, std::vector<student1> &studentas);
 void pirmine_apklausa (std::string &kas, std::string &ar_generuoti, std::string &duomenu_ivedimas,
  int &koki_faila_generuoti, int &kiek_nd, int &strategija);

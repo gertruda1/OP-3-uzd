@@ -24,11 +24,6 @@ double rasti_mediana_list (std::list <int> listas);
 double vidurkis_list (std::list<int> listas, int n);
 bool compareAlphabet_list(student a, student b);
 void failugeneravimas (int a, int b);
-void failugeneravimas1000 (int a);
-void failugeneravimas10000 (int a);
-void failugeneravimas100000 (int a);
-void failugeneravimas1000000 (int a);
-void failugeneravimas10000000 (int a);
 void skaitymas_is_failo_listas (std::list<student> &studentas, std::string kas);
 void pirmine_apklausa (std::string &kas, std::string &ar_generuoti, std::string &duomenu_ivedimas, 
 int &koki_faila_generuoti, int &kiek_nd, int &strategija);

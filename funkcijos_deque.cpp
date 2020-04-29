@@ -232,26 +232,28 @@ void spausdinimas_deque(std::deque<student> a, std::string b)
 {
 
     std::ofstream rez1 ("vargsiukai.txt");
-    if (b == "vidurkis") rez1 << "Pavarde \t Vardas \t\t Galutinis (Vid.)" << std::endl;
-    else rez1 << "Pavarde \t Vardas \t\t Galutinis (Med.) " << std::endl;
+    rez1 << std::setw(20) << std::left << "Pavarde" << std::setw(20) << "Vardas" << std::setw(20);
+    if (b == "vidurkis") rez1 << "Galutinis (Vid.)" << std::endl;
+    else rez1 << "Galutinis (Med.)" << std::endl;
     rez1 << "-----------------------------------------------------------" << std::endl;
     for (int i = 0; i < a.size(); i++)
     {
         if (a[i].grupe == "vargsiukai")
-            rez1 << a[i].pavarde << " \t " << a[i].vardas << " \t\t " << std::fixed << std::setprecision(2) <<
-            a[i].galutinis << std::endl;
+            rez1 << std::setw(20) << std::left << a[i].pavarde << std::setw(20) 
+            << a[i].vardas << std::setw(20) << std::fixed << std::setprecision(2) << a[i].galutinis << std::endl;
     }
     rez1.close();
     
     std::ofstream rez2 ("kietiakai.txt");
-    if (b == "vidurkis") rez2 << "Pavarde \t Vardas \t\t Galutinis (Vid.)" << std::endl;
-    else rez2 << "Pavarde \t Vardas \t\t Galutinis (Med.) " << std::endl;
+    rez2 << std::setw(20) << std::left << "Pavarde" << std::setw(20) << "Vardas" << std::setw(20);
+    if (b == "vidurkis") rez2 << "Galutinis (Vid.)" << std::endl;
+    else rez2 << "(Med.)" << std::endl;
     rez2 << "-----------------------------------------------------------" << std::endl;
     for (int i = 0; i < a.size(); i++)
     {
         if (a[i].grupe == "kietiakai")
-            rez2 << a[i].pavarde << " \t " << a[i].vardas << " \t\t " << std::fixed << std::setprecision(2) <<
-            a[i].galutinis << std::endl;
+            rez2 << std::setw(20) << std::left << a[i].pavarde << std::setw(20) << a[i].vardas 
+            << std::setw(20) << std::fixed << std::setprecision(2) << a[i].galutinis << std::endl;
     }
     rez2.close();
 }
@@ -259,25 +261,27 @@ void spausdinimas_deque(std::deque<student> a, std::string b)
 void spausdinimas_deque(std::deque<student> kiet, std::deque<student> vargs, std::string b)
 {
     std::ofstream rez1 ("vargsiukai.txt");
-    if (b == "vidurkis") rez1 << "Pavarde \t Vardas \t\t Galutinis (Vid.)" << std::endl;
-    else rez1 << "Pavarde \t Vardas \t\t Galutinis (Med.) " << std::endl;
+    rez1 << std::setw(20) << std::left << "Pavarde" << std::setw(20) << "Vardas" << std::setw(20);
+    if (b == "vidurkis") rez1 << "Galutinis (Vid.)" << std::endl;
+    else rez1 << "Galutinis (Med.)" << std::endl;
     rez1 << "-----------------------------------------------------------" << std::endl;
 
     for (int i = 0; i < vargs.size(); i++)
     {
-        rez1 << vargs[i].pavarde << " \t " << vargs[i].vardas << " \t\t " << std::fixed << std::setprecision(2) <<
-        vargs[i].galutinis << std::endl;
+        rez1 << std::setw(20) << std::left << vargs[i].pavarde << std::setw(20) << vargs[i].vardas 
+        << std::setw(20) << std::fixed << std::setprecision(2) << vargs[i].galutinis << std::endl;
     }
     rez1.close();
         
     std::ofstream rez2 ("kietiakai.txt");
-    if (b == "vidurkis") rez2 << "Pavarde \t Vardas \t\t Galutinis (Vid.)" << std::endl;
-    else rez2 << "Pavarde \t Vardas \t\t Galutinis (Med.) " << std::endl;
+    rez2 << std::setw(20) << std::left << "Pavarde" << std::setw(20) << "Vardas" << std::setw(20);
+    if (b == "vidurkis") rez2 << "Galutinis (Vid.)" << std::endl;
+    else rez2 << "Galutinis (Med.)" << std::endl;
     rez2 << "-----------------------------------------------------------" << std::endl;
     for (int i = 0; i < kiet.size(); i++)
     {
-            rez2 << kiet[i].pavarde << " \t " << kiet[i].vardas << " \t\t " << std::fixed << std::setprecision(2) <<
-            kiet[i].galutinis << std::endl;
+            rez2 << std::setw(20) << std::left << kiet[i].pavarde << std::setw(20) << kiet[i].vardas 
+            << std::setw(20) << std::fixed << std::setprecision(2) << kiet[i].galutinis << std::endl;
     }
     rez2.close();
 }

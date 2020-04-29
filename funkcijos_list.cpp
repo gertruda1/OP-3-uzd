@@ -253,50 +253,55 @@ void spausdinimas_listas(std::list<student> a, std::string b)
 {
 
     std::ofstream rez1 ("vargsiukai.txt");
-    if (b == "vidurkis") rez1 << "Pavarde \t Vardas \t\t Galutinis (Vid.)" << std::endl;
-    else rez1 << "Pavarde \t Vardas \t\t Galutinis (Med.) " << std::endl;
+    rez1 << std::setw(20) << std::left << "Pavarde" << std::setw(20) << "Vardas" << std::setw(20);
+    if (b == "vidurkis") rez1 << "Galutinis (Vid.)" << std::endl;
+    else rez1 << "Galutinis (Med.) " << std::endl;
     rez1 << "-----------------------------------------------------------" << std::endl;
     for (auto itr = a.begin(); itr != a.end(); itr++)
     {
         if (itr->grupe == "vargsiukai")
-            rez1 << itr->pavarde << " \t " << itr->vardas << " \t\t " << std::fixed << std::setprecision(2) <<
-            itr->galutinis << std::endl;
+            rez1 << std::setw(20) << std::left << itr->pavarde << std::setw(20) << itr->vardas 
+            << std::setw(20) << std::fixed << std::setprecision(2) << itr->galutinis << std::endl;
     }
     rez1.close();
     
     std::ofstream rez2 ("kietiakai.txt");
-    if (b == "vidurkis") rez2 << "Pavarde \t Vardas \t\t Galutinis (Vid.)" << std::endl;
-    else rez2 << "Pavarde \t Vardas \t\t Galutinis (Med.) " << std::endl;
+    rez2 << std::setw(20) << std::left << "Pavarde" << std::setw(20) << "Vardas" << std::setw(20);
+    if (b == "vidurkis") rez2 << "Galutinis (Vid.)" << std::endl;
+    else rez2 << "Galutinis (Med.) " << std::endl;
     rez2 << "-----------------------------------------------------------" << std::endl;
     for (auto itr = a.begin(); itr != a.end(); itr++)
     {
         if (itr->grupe == "kietiakai")
-            rez2 << itr->pavarde << " \t " << itr->vardas << " \t\t " << std::fixed << std::setprecision(2) <<
-            itr->galutinis << std::endl;
+            rez2 << std::setw(20) << std::left << itr->pavarde << std::setw(20) << itr->vardas 
+            << std::setw(20) << std::fixed << std::setprecision(2) << itr->galutinis << std::endl;
     }
     rez2.close();
 }
 
 void spausdinimas_listas (std::list<student> kiet, std::list<student> vargs, std::string b)
 {
-        std::ofstream rez1 ("vargsiukai.txt");
-    if (b == "vidurkis") rez1 << "Pavarde \t Vardas \t\t Galutinis (Vid.)" << std::endl;
-    else rez1 << "Pavarde \t Vardas \t\t Galutinis (Med.) " << std::endl;
+    std::ofstream rez1 ("vargsiukai.txt");
+    rez1 << std::setw(20) << std::left << "Pavarde" << std::setw(20) << "Vardas" << std::setw(20);
+    if (b == "vidurkis") rez1 << "Galutinis (Vid.)" << std::endl;
+    else rez1 << "Galutinis (Med.)" << std::endl;
     rez1 << "-----------------------------------------------------------" << std::endl;
     for (auto itr = vargs.begin(); itr != vargs.end(); itr++)
     {
-        rez1 << itr->pavarde << " \t " << itr->vardas << " \t\t " << std::fixed << std::setprecision(2) <<
-        itr->galutinis << std::endl;
+        rez1 << std::setw(20) << std::left << itr->pavarde << std::setw(20) << itr->vardas 
+        << std::setw(20) << std::fixed << std::setprecision(2) << itr->galutinis << std::endl;
     }
     rez1.close();
     
     std::ofstream rez2 ("kietiakai.txt");
-    if (b == "vidurkis") rez2 << "Pavarde \t Vardas \t\t Galutinis (Vid.)" << std::endl;
-    else rez2 << "Pavarde \t Vardas \t\t Galutinis (Med.) " << std::endl;
+    rez2 << std::setw(20) << std::left << "Pavarde" << std::setw(20) << "Vardas" << std::setw(20); 
+    if (b == "vidurkis") rez2 << "Galutinis (Vid.)" << std::endl;
+    else rez2 << "Galutinis (Med.)" << std::endl;
     rez2 << "-----------------------------------------------------------" << std::endl;
     for (auto itr = kiet.begin(); itr != kiet.end(); itr++)
     {
-        rez2 << itr->pavarde << " \t " << itr->vardas << " \t\t " << std::fixed << std::setprecision(2) <<
+        rez2 << std::setw(20) << std::left << itr->pavarde << std::setw(20) << itr->vardas 
+        << std::setw(20) << std::fixed << std::setprecision(2) <<
         itr->galutinis << std::endl;
     }
     rez2.close();
