@@ -88,6 +88,12 @@ laikas yra matuojamas sekundėmis. Namų darbų kiekis sugeneruotuose failuose -
  
  Šioje programos versijoje buvo sukurta nauja klasė "student1", kuri panaudojama vietoj struktūros "student", kai programoje yra naudojami vektoriai. Klasėje yra naudojamas konstruktorius, destruktorius, set'eriai ir get'eriai.
 
-[**v1.2**](https://github.com/gertruda1/OP-3-uzd/releases/tag/v1.2)
+ [**v1.2**](https://github.com/gertruda1/OP-3-uzd/releases/tag/v1.2)
 
 Šioje programos versijoje realizuoti Rule of three ir nauji operatoriai klasėje "student1".
+
+ [**v1.5**](https://github.com/gertruda1/OP-3-uzd/releases/tag/v1.5)
+ 
+Programos patobulinimai:
+ * Vietoje turimos vienos 'student1' klasės sukurtos dvi: bazinė klasė 'zmogus', skirta bendrai aprašyti žmogų ir iš jos išvestinė (derived) klasė - 'student1'.
+ * Padaryta, kad žmogui skirta bazinė klasė būtų abstrakčioji klasė, t.y. nebūtų galima sukurti žmogaus ('zmogus') tipo objektų, o tik objektus iš jos išvestinės klasės ('student1').
