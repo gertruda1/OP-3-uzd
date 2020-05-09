@@ -55,7 +55,7 @@ void failugeneravimas (int a, int b)
 }
 
 
-void skaitymas_is_failo (int egz, std::string kas, double ndvid, double ndsum, std::vector<student1> &studentas)
+void skaitymas_is_failo (int egz, char kas, double ndvid, double ndsum, std::vector<student1> &studentas)
 {
     int nd_kiekis_faile = 0;
     std::ifstream duom ("kursiokai.txt");
@@ -101,13 +101,13 @@ void skaitymas_is_failo (int egz, std::string kas, double ndvid, double ndsum, s
                 nd_rez.push_back(nd);
             }
             duom >> egz;
-            if(kas == "vidurkis")
+            if(kas == 'v')
             {
                 ndsum = accumulate(nd_rez.begin(), nd_rez.end(), 0);
                 ndvid = ndsum / (nd_rez.size());
                 tmp.galBalas(ndvid, egz);
             }
-            if(kas == "mediana")
+            if(kas == 'm')
             {
                tmp.galBalas(nd_rez, rastimediana, egz);
             }
@@ -120,17 +120,17 @@ void skaitymas_is_failo (int egz, std::string kas, double ndvid, double ndsum, s
     duom.close();
 }
 
-void pirmine_apklausa (std::string &kas, std::string &ar_generuoti, std::string &duomenu_ivedimas, 
+void pirmine_apklausa (char &kas, char &ar_generuoti, char &duomenu_ivedimas, 
 int &koki_faila_generuoti, int &kiek_nd, int &strategija)
 {
-    std::cout << "Vidurkis ar mediana? (vidurkis / mediana)" << std::endl;
+    std::cout << "Vidurkis (v) ar mediana (m)?" << std::endl;
     std::cin >> kas;
-    while(!std::cin || kas!="vidurkis" && kas!="mediana" )
+    while(!std::cin || kas!='v' && kas!='m' )
     {
-        std::cout<<"Ivestas netinkamas dydis, pasirinkite vidurkis ar mediana: ";
+        std::cout<<"Ivestas netinkamas dydis, pasirinkite v ar m: ";
         std::cin>>kas;
 
-        if(kas=="vidurkis" && kas=="mediana" )
+        if(kas=='v' && kas=='m' )
         {
             break;
         }
@@ -140,20 +140,20 @@ int &koki_faila_generuoti, int &kiek_nd, int &strategija)
     std::cin >> strategija;
     ArSkaiciusTinkamas(strategija, 1, 3);
 
-    std::cout << "Generuoti duomenu failus ar negeneruoti? (generuoti / negeneruoti)" << std::endl;
+    std::cout << "Generuoti duomenu failus (t) ar negeneruoti (n)?" << std::endl;
     std::cin >> ar_generuoti;
-    while(!std::cin || ar_generuoti!="negeneruoti" && ar_generuoti!="generuoti" )
+    while(!std::cin || ar_generuoti!='n' && ar_generuoti!='t' )
     {
-        std::cout<<"Ivestas netinkamas dydis, pasirinkite generuoti ar negeneruoti: ";
+        std::cout<<"Ivestas netinkamas dydis, pasirinkite t arba n: ";
         std::cin>>ar_generuoti;
 
-        if(ar_generuoti == "generuoti" && ar_generuoti == "negeneruoti" )
+        if(ar_generuoti == 't' && ar_generuoti == 'n' )
         {
             break;
         }
     }
 
-    if(ar_generuoti == "generuoti")
+    if(ar_generuoti == 't')
     {
         std::cout << "Kiek studente bus viename faile? (1000 / 10000 / 100000 / 1000000 / 10000000)" << std::endl;
         std::cin >> koki_faila_generuoti;
@@ -173,16 +173,16 @@ int &koki_faila_generuoti, int &kiek_nd, int &strategija)
 
     }
 
-    if (ar_generuoti == "negeneruoti")
+    if (ar_generuoti == 'n')
     {
-        std::cout << "Duomenis nuskaityti ar ivesti?  (nuskaityti / ivesti)" << std::endl;
+        std::cout << "Duomenis nuskaityti (n) ar ivesti (i)?" << std::endl;
         std::cin >> duomenu_ivedimas;
-        while(!std::cin || duomenu_ivedimas!="nuskaityti" && duomenu_ivedimas!="ivesti" )
+        while(!std::cin || duomenu_ivedimas!='n' && duomenu_ivedimas!='i' )
         {
-            std::cout<<"Ivestas netinkamas dydis, pasirinkite nuskaityti ar ivesti: ";
+            std::cout<<"Ivestas netinkamas dydis, pasirinkite n arba i: ";
             std::cin>>duomenu_ivedimas;
 
-            if(duomenu_ivedimas == "nuskaityti" && duomenu_ivedimas == "ivesti")
+            if(duomenu_ivedimas == 'n' && duomenu_ivedimas == 'i')
             {
                 break;
             }
@@ -234,7 +234,7 @@ void paskirstymas2 (std::vector<student1> &a, std::vector<student1> &kiet)
     a.shrink_to_fit();
 }
 
-void F_duomenu_ivedimas(double ndsum, int egz, double ndvid, std::string kas, std::vector<student1> &studentas)
+void F_duomenu_ivedimas(double ndsum, int egz, double ndvid, char kas, std::vector<student1> &studentas)
 {
         int m;
         std::cout << "Iveskite, kiek is viso yra studentu " << std::endl;
@@ -249,19 +249,10 @@ void F_duomenu_ivedimas(double ndsum, int egz, double ndvid, std::string kas, st
                 std::cin>>m; 
             }
         }
-        std::string kaip;
-        std::cout << "Namu darbu resultatai random ar ne (Ivesti 'random' / 'nerandom')? " << std::endl;
+        int kaip;
+        std::cout << "Namu darbu resultatai random (1) ar nerandom (2)? " << std::endl;
         std::cin >> kaip;
-        while(!std::cin || kaip!="random" && kaip!="nerandom" )
-        {
-            std::cout<<"Ivestas netinkamas dydis, pasirinkite random ar nerandom: ";
-            std::cin>>kaip;
-
-            if(kaip=="random" && kaip=="nerandom" )
-            {
-                break;
-            }
-        }
+        ArSkaiciusTinkamas(kaip, 1, 2);
 
         student1 stud;
         std::string vard, pavard;
@@ -277,7 +268,7 @@ void F_duomenu_ivedimas(double ndsum, int egz, double ndvid, std::string kas, st
                 int nd;
                 int kiek = 0;
 
-            if (kaip == "nerandom")
+            if (kaip == 2)
 
             {
                 std::cout << "Iveskite namu darbu rezultatus (desimtbaleje sistemoje)" << std::endl;
@@ -311,7 +302,7 @@ void F_duomenu_ivedimas(double ndsum, int egz, double ndvid, std::string kas, st
                 
             }
 
-            if(kaip == "random")
+            if(kaip == 1)
             {
                 Rand_int rnd(1, 10);
                 int galas=0; int kiekis;
@@ -334,7 +325,7 @@ void F_duomenu_ivedimas(double ndsum, int egz, double ndvid, std::string kas, st
             std::cout << std::endl;
 
             ndvid = ndsum / (kiek - 1);
-            if (kas == "vidurkis")
+            if (kas == 'v')
             {
                 stud.galBalas(ndvid, egz);
             }
@@ -343,12 +334,12 @@ void F_duomenu_ivedimas(double ndsum, int egz, double ndvid, std::string kas, st
         }
 }
 
-void spausdinimas(std::vector<student1> a, std::string b)
+void spausdinimas(std::vector<student1> a, char b)
 {
 
     std::ofstream rez1 ("vargsiukai.txt");
     rez1 << std::setw(20) << std::left << "Pavarde" << std::setw(20) << "Vardas" << std::setw(20);
-    if (b == "vidurkis") rez1 << "Galutinis (Vid.)" << std::endl;
+    if (b == 'v') rez1 << "Galutinis (Vid.)" << std::endl;
     else rez1 << "Galutinis (Med.) " << std::endl;
     rez1 << "-----------------------------------------------------------" << std::endl;
 
@@ -362,7 +353,7 @@ void spausdinimas(std::vector<student1> a, std::string b)
         
     std::ofstream rez2 ("kietiakai.txt");
     rez2 << std::setw(20) << std::left << "Pavarde" << std::setw(20) << "Vardas" << std::setw(20);
-    if (b == "vidurkis") rez2 << "Galutinis (Vid.)" << std::endl;
+    if (b == 'v') rez2 << "Galutinis (Vid.)" << std::endl;
     else rez2 << "Galutinis (Med.)" << std::endl;
     rez2 << "-----------------------------------------------------------" << std::endl;
     for (int i = 0; i < a.size(); i++)
@@ -373,11 +364,11 @@ void spausdinimas(std::vector<student1> a, std::string b)
     }
     rez2.close();
 }
-void spausdinimas(std::vector<student1> kiet, std::vector<student1> vargs, std::string b)
+void spausdinimas(std::vector<student1> kiet, std::vector<student1> vargs, char b)
 {
     std::ofstream rez1 ("vargsiukai.txt");
     rez1 << std::setw(20) << std::left << "Pavarde" << std::setw(20) << "Vardas" << std::setw(20);
-    if (b == "vidurkis") rez1 << "Galutinis (Vid.)" << std::endl;
+    if (b == 'v') rez1 << "Galutinis (Vid.)" << std::endl;
     else rez1 << "Galutinis (Med.)" << std::endl;
     rez1 << "-----------------------------------------------------------" << std::endl;
 
@@ -390,7 +381,7 @@ void spausdinimas(std::vector<student1> kiet, std::vector<student1> vargs, std::
         
     std::ofstream rez2 ("kietiakai.txt");
     rez2 << std::setw(20) << std::left << "Pavarde" << std::setw(20) << "Vardas" << std::setw(20);
-    if (b == "vidurkis") rez2 << "Galutinis (Vid.)" << std::endl;
+    if (b == 'v') rez2 << "Galutinis (Vid.)" << std::endl;
     else rez2 << "Galutinis (Med.)" << std::endl;
     rez2 << "-----------------------------------------------------------" << std::endl;
     for (int i = 0; i < kiet.size(); i++)
@@ -417,14 +408,12 @@ void koks_konteineris (char& simbolis, char pirmas, char antras, char trecias)
 void vektorius()
 {
     double ndvid, ndsum = 0;
-    std::string kas;
-    std::string ar_generuoti;
-    std::string duomenu_ivedimas;
+    char kas, ar_generuoti, duomenu_ivedimas;
     int koki_faila_generuoti, egz, kiek_nd, strategija;
     std::vector<student1> studentas;
     pirmine_apklausa(kas, ar_generuoti, duomenu_ivedimas, koki_faila_generuoti, kiek_nd, strategija);
     
-    if(ar_generuoti == "generuoti")
+    if(ar_generuoti == 't')
     {
         auto start = std::chrono::high_resolution_clock::now();
         failugeneravimas(koki_faila_generuoti, kiek_nd);
@@ -432,7 +421,7 @@ void vektorius()
         std::chrono::duration<double> diff = end-start;
         std::cout << "failogeneravimo laikas: " << diff.count() << std::endl;
     }
-    if(ar_generuoti == "generuoti" || duomenu_ivedimas == "nuskaityti")
+    if(ar_generuoti == 't' || duomenu_ivedimas == 'n')
     {
         auto start = std::chrono::high_resolution_clock::now();
         skaitymas_is_failo(egz, kas, ndvid, ndsum, studentas);
@@ -490,7 +479,7 @@ void vektorius()
 
 
     ///////////////Duomenu ivedimas/////////////////////
-    if(duomenu_ivedimas == "ivesti")
+    if(duomenu_ivedimas == 'i')
     {
         F_duomenu_ivedimas(ndsum, egz, ndvid, kas, studentas);
         if(strategija == 3)

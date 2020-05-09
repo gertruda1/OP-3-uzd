@@ -6,3 +6,6 @@ funkcijos_list:
 	g++ -c funkcijos_list.cpp
 funkcijos_deque:
 	g++ -c funkcijos_deque.cpp
+
+clean:
+	del *.o main

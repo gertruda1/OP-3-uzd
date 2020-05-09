@@ -24,7 +24,7 @@ double rastimediana_deque (std::deque<int> vekt)
 }
 
 
-void skaitymas_is_failo_deque (int egz, std::string kas, double ndvid, double ndsum, std::deque<student> &studentas)
+void skaitymas_is_failo_deque (int egz, char kas, double ndvid, double ndsum, std::deque<student> &studentas)
 {
     int nd_kiekis_faile = 0;
     std::ifstream duom ("kursiokai.txt");
@@ -67,13 +67,13 @@ void skaitymas_is_failo_deque (int egz, std::string kas, double ndvid, double nd
                 nd_rez.push_back(nd);
             }
             duom >> egz;
-            if(kas == "vidurkis")
+            if(kas == 'v')
             {
                 ndsum = accumulate(nd_rez.begin(), nd_rez.end(), 0);
                 ndvid = ndsum / (nd_rez.size());
                 tmp.galutinis = 0.4 *ndvid + 0.6 * egz;
             }
-            if(kas == "mediana")
+            if(kas == 'm')
             {
                tmp.galutinis = 0.4 * rastimediana_deque(nd_rez) + 0.6 * egz;
             }
@@ -122,7 +122,7 @@ void paskirstymas2_deque (std::deque<student> &a, std::deque<student> &kiet)
 }
 
 
-void F_duomenu_ivedimas_deque (double ndsum, int egz, double ndvid, std::string kas, std::deque<student> &studentas)
+void F_duomenu_ivedimas_deque (double ndsum, int egz, double ndvid, char kas, std::deque<student> &studentas)
 {
         int m;
         std::cout << "Iveskite, kiek is viso yra studentu " << std::endl;
@@ -137,19 +137,10 @@ void F_duomenu_ivedimas_deque (double ndsum, int egz, double ndvid, std::string 
                 std::cin>>m; 
             }
         }
-        std::string kaip;
-        std::cout << "Namu darbu resultatai random ar ne(Ivesti 'random' / 'nerandom')? " << std::endl;
+        int kaip;
+        std::cout << "Namu darbu resultatai random (1) ar nerandom (2)? " << std::endl;
         std::cin >> kaip;
-        while(!std::cin || kaip!="random" && kaip!="nerandom" )
-        {
-            std::cout<<"Ivestas netinkamas dydis, pasirinkite random ar nerandom: ";
-            std::cin>>kaip;
-
-            if(kaip=="random" && kaip=="nerandom" )
-            {
-                break;
-            }
-        }
+        ArSkaiciusTinkamas(kaip, 1,2);
 
         student stud;
         for (int i = 0; i < m; i++)
@@ -162,7 +153,7 @@ void F_duomenu_ivedimas_deque (double ndsum, int egz, double ndvid, std::string 
                 int nd;
                 int kiek = 0;
 
-            if (kaip == "nerandom")
+            if (kaip == 2)
 
             {
                 std::cout << "Iveskite namu darbu rezultatus (desimtbaleje sistemoje)" << std::endl;
@@ -196,7 +187,7 @@ void F_duomenu_ivedimas_deque (double ndsum, int egz, double ndvid, std::string 
                 
             }
 
-            if(kaip == "random")
+            if(kaip == 1)
             {
                 Rand_int rnd(1, 10);
                 int galas=0; int kiekis;
@@ -219,7 +210,7 @@ void F_duomenu_ivedimas_deque (double ndsum, int egz, double ndvid, std::string 
             std::cout << std::endl;
 
             ndvid = ndsum / (kiek - 1);
-            if (kas == "vidurkis")
+            if (kas == 'v')
             {
                 stud.galutinis = 0.4 * ndvid + 0.6 * egz;
             }
@@ -228,12 +219,12 @@ void F_duomenu_ivedimas_deque (double ndsum, int egz, double ndvid, std::string 
         }
 }
 
-void spausdinimas_deque(std::deque<student> a, std::string b)
+void spausdinimas_deque(std::deque<student> a, char b)
 {
 
     std::ofstream rez1 ("vargsiukai.txt");
     rez1 << std::setw(20) << std::left << "Pavarde" << std::setw(20) << "Vardas" << std::setw(20);
-    if (b == "vidurkis") rez1 << "Galutinis (Vid.)" << std::endl;
+    if (b == 'v') rez1 << "Galutinis (Vid.)" << std::endl;
     else rez1 << "Galutinis (Med.)" << std::endl;
     rez1 << "-----------------------------------------------------------" << std::endl;
     for (int i = 0; i < a.size(); i++)
@@ -246,7 +237,7 @@ void spausdinimas_deque(std::deque<student> a, std::string b)
     
     std::ofstream rez2 ("kietiakai.txt");
     rez2 << std::setw(20) << std::left << "Pavarde" << std::setw(20) << "Vardas" << std::setw(20);
-    if (b == "vidurkis") rez2 << "Galutinis (Vid.)" << std::endl;
+    if (b == 'v') rez2 << "Galutinis (Vid.)" << std::endl;
     else rez2 << "(Med.)" << std::endl;
     rez2 << "-----------------------------------------------------------" << std::endl;
     for (int i = 0; i < a.size(); i++)
@@ -258,11 +249,11 @@ void spausdinimas_deque(std::deque<student> a, std::string b)
     rez2.close();
 }
 
-void spausdinimas_deque(std::deque<student> kiet, std::deque<student> vargs, std::string b)
+void spausdinimas_deque(std::deque<student> kiet, std::deque<student> vargs, char b)
 {
     std::ofstream rez1 ("vargsiukai.txt");
     rez1 << std::setw(20) << std::left << "Pavarde" << std::setw(20) << "Vardas" << std::setw(20);
-    if (b == "vidurkis") rez1 << "Galutinis (Vid.)" << std::endl;
+    if (b == 'v') rez1 << "Galutinis (Vid.)" << std::endl;
     else rez1 << "Galutinis (Med.)" << std::endl;
     rez1 << "-----------------------------------------------------------" << std::endl;
 
@@ -275,7 +266,7 @@ void spausdinimas_deque(std::deque<student> kiet, std::deque<student> vargs, std
         
     std::ofstream rez2 ("kietiakai.txt");
     rez2 << std::setw(20) << std::left << "Pavarde" << std::setw(20) << "Vardas" << std::setw(20);
-    if (b == "vidurkis") rez2 << "Galutinis (Vid.)" << std::endl;
+    if (b == 'v') rez2 << "Galutinis (Vid.)" << std::endl;
     else rez2 << "Galutinis (Med.)" << std::endl;
     rez2 << "-----------------------------------------------------------" << std::endl;
     for (int i = 0; i < kiet.size(); i++)
@@ -290,14 +281,12 @@ void spausdinimas_deque(std::deque<student> kiet, std::deque<student> vargs, std
 void deque()
 {
     double ndvid, ndsum = 0;
-    std::string kas;
-    std::string ar_generuoti;
-    std::string duomenu_ivedimas;
+    char kas, ar_generuoti, duomenu_ivedimas;
     int koki_faila_generuoti, egz, kiek_nd, strategija;
     std::deque<student> studentas;
     pirmine_apklausa(kas, ar_generuoti, duomenu_ivedimas, koki_faila_generuoti, kiek_nd, strategija);
     
-    if(ar_generuoti == "generuoti")
+    if(ar_generuoti == 't')
     {
         auto start = std::chrono::high_resolution_clock::now();
         failugeneravimas(koki_faila_generuoti, kiek_nd);
@@ -305,7 +294,7 @@ void deque()
         std::chrono::duration<double> diff = end-start;
         std::cout << koki_faila_generuoti << " Irasu failo generavimo laikas: " << diff.count() << std::endl;
     }
-    if(ar_generuoti == "generuoti" || duomenu_ivedimas == "nuskaityti")
+    if(ar_generuoti == 't' || duomenu_ivedimas == 'n')
     {
         auto start = std::chrono::high_resolution_clock::now();
         skaitymas_is_failo_deque(egz, kas, ndvid, ndsum, studentas);
@@ -363,7 +352,7 @@ void deque()
 
 
     ///////////////Duomenu ivedimas/////////////////////
-    if(duomenu_ivedimas == "ivesti")
+    if(duomenu_ivedimas == 'i')
     {
         F_duomenu_ivedimas_deque(ndsum, egz, ndvid, kas, studentas);
 

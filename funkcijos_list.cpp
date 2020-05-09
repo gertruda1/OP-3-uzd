@@ -33,7 +33,7 @@ double vidurkis_list (std::list<int> listas, int n)
 
 
 
-void skaitymas_is_failo_listas (std::list<student> &studentas, std::string kas)
+void skaitymas_is_failo_listas (std::list<student> &studentas, char kas)
 {
     int nd_kiekis_faile = 0; 
     std::ifstream duom ("kursiokai.txt");
@@ -78,12 +78,12 @@ void skaitymas_is_failo_listas (std::list<student> &studentas, std::string kas)
     int egz;
     duom >> egz;
     double ndvid;
-    if(kas == "vidurkis")
+    if(kas == 'v')
     {
         ndvid = vidurkis_list (nd_rez, nd_rez.size());
         tmp.galutinis = 0.4 * ndvid + 0.6 * egz;
     }
-    if(kas == "mediana")
+    if(kas == 'm')
     {
         tmp.galutinis = 0.4 * rasti_mediana_list(nd_rez) + 0.6 * egz;
     }
@@ -143,7 +143,7 @@ void paskirstymas2_listas (std::list<student> &a, std::list<student> &vargs)
 }
 
 
-void F_duomenu_ivedimas_listas(std::string kas, std::list<student> &studentas)
+void F_duomenu_ivedimas_listas(char kas, std::list<student> &studentas)
 {
         int m;
         std::cout << "Iveskite, kiek is viso yra studentu " << std::endl;
@@ -158,19 +158,10 @@ void F_duomenu_ivedimas_listas(std::string kas, std::list<student> &studentas)
                 std::cin>>m; 
             }
         }
-        std::string kaip;
-        std::cout << "Namu darbu resultatai random ar ne(Ivesti 'random' / 'nerandom')? " << std::endl;
+        int kaip;
+        std::cout << "Namu darbu resultatai random(1) ar nerandom (2)? " << std::endl;
         std::cin >> kaip;
-        while(!std::cin || kaip!="random" && kaip!="nerandom" )
-        {
-            std::cout<<"Ivestas netinkamas dydis, pasirinkite random ar nerandom: ";
-            std::cin>>kaip;
-
-            if(kaip=="random" && kaip=="nerandom" )
-            {
-                break;
-            }
-        }
+        ArSkaiciusTinkamas(kaip, 1,2);
 
         student stud;
         int egz;
@@ -184,7 +175,7 @@ void F_duomenu_ivedimas_listas(std::string kas, std::list<student> &studentas)
                 int nd;
                 int kiek = 0;
 
-            if (kaip == "nerandom")
+            if (kaip == 2)
 
             {
                 std::cout << "Iveskite namu darbu rezultatus (desimtbaleje sistemoje)" << std::endl;
@@ -217,7 +208,7 @@ void F_duomenu_ivedimas_listas(std::string kas, std::list<student> &studentas)
                 double ndvid = vidurkis_list(listas, listas.size());
             }
 
-            if(kaip == "random")
+            if(kaip == 1)
             {
                 Rand_int rnd(1, 10);
                 int galas=0; int kiekis;
@@ -239,7 +230,7 @@ void F_duomenu_ivedimas_listas(std::string kas, std::list<student> &studentas)
 
             double ndvid = vidurkis_list(listas, listas.size());
 
-            if (kas == "vidurkis")
+            if (kas == 'v')
             {
                 stud.galutinis = 0.4 * ndvid + 0.6 * egz;
             }
@@ -249,12 +240,12 @@ void F_duomenu_ivedimas_listas(std::string kas, std::list<student> &studentas)
         studentas.sort(compareAlphabet_list);
 }
 
-void spausdinimas_listas(std::list<student> a, std::string b)
+void spausdinimas_listas(std::list<student> a, char b)
 {
 
     std::ofstream rez1 ("vargsiukai.txt");
     rez1 << std::setw(20) << std::left << "Pavarde" << std::setw(20) << "Vardas" << std::setw(20);
-    if (b == "vidurkis") rez1 << "Galutinis (Vid.)" << std::endl;
+    if (b == 'v') rez1 << "Galutinis (Vid.)" << std::endl;
     else rez1 << "Galutinis (Med.) " << std::endl;
     rez1 << "-----------------------------------------------------------" << std::endl;
     for (auto itr = a.begin(); itr != a.end(); itr++)
@@ -267,7 +258,7 @@ void spausdinimas_listas(std::list<student> a, std::string b)
     
     std::ofstream rez2 ("kietiakai.txt");
     rez2 << std::setw(20) << std::left << "Pavarde" << std::setw(20) << "Vardas" << std::setw(20);
-    if (b == "vidurkis") rez2 << "Galutinis (Vid.)" << std::endl;
+    if (b == 'v') rez2 << "Galutinis (Vid.)" << std::endl;
     else rez2 << "Galutinis (Med.) " << std::endl;
     rez2 << "-----------------------------------------------------------" << std::endl;
     for (auto itr = a.begin(); itr != a.end(); itr++)
@@ -279,11 +270,11 @@ void spausdinimas_listas(std::list<student> a, std::string b)
     rez2.close();
 }
 
-void spausdinimas_listas (std::list<student> kiet, std::list<student> vargs, std::string b)
+void spausdinimas_listas (std::list<student> kiet, std::list<student> vargs, char b)
 {
     std::ofstream rez1 ("vargsiukai.txt");
     rez1 << std::setw(20) << std::left << "Pavarde" << std::setw(20) << "Vardas" << std::setw(20);
-    if (b == "vidurkis") rez1 << "Galutinis (Vid.)" << std::endl;
+    if (b == 'v') rez1 << "Galutinis (Vid.)" << std::endl;
     else rez1 << "Galutinis (Med.)" << std::endl;
     rez1 << "-----------------------------------------------------------" << std::endl;
     for (auto itr = vargs.begin(); itr != vargs.end(); itr++)
@@ -295,7 +286,7 @@ void spausdinimas_listas (std::list<student> kiet, std::list<student> vargs, std
     
     std::ofstream rez2 ("kietiakai.txt");
     rez2 << std::setw(20) << std::left << "Pavarde" << std::setw(20) << "Vardas" << std::setw(20); 
-    if (b == "vidurkis") rez2 << "Galutinis (Vid.)" << std::endl;
+    if (b == 'v') rez2 << "Galutinis (Vid.)" << std::endl;
     else rez2 << "Galutinis (Med.)" << std::endl;
     rez2 << "-----------------------------------------------------------" << std::endl;
     for (auto itr = kiet.begin(); itr != kiet.end(); itr++)
@@ -309,14 +300,12 @@ void spausdinimas_listas (std::list<student> kiet, std::list<student> vargs, std
 
 void listas()
 {
-    std::string kas;
-    std::string ar_generuoti;
-    std::string duomenu_ivedimas;
+    char kas, ar_generuoti, duomenu_ivedimas;
     int koki_faila_generuoti, kiek_nd, strategija;
     std::list<student> studentas;
     pirmine_apklausa(kas, ar_generuoti, duomenu_ivedimas, koki_faila_generuoti, kiek_nd, strategija);
     
-    if(ar_generuoti == "generuoti")
+    if(ar_generuoti == 't')
     {
         auto start = std::chrono::high_resolution_clock::now();
         failugeneravimas(koki_faila_generuoti, kiek_nd);
@@ -324,7 +313,7 @@ void listas()
         std::chrono::duration<double> diff = end-start;
         std::cout << "failo generavimo laikas: " << diff.count() << std::endl;
     }
-    if (ar_generuoti == "generuoti" || duomenu_ivedimas == "nuskaityti")
+    if (ar_generuoti == 't' || duomenu_ivedimas == 'n')
     {
         auto start = std::chrono::high_resolution_clock::now();
         skaitymas_is_failo_listas(studentas, kas);
@@ -381,7 +370,7 @@ void listas()
     }
 
     ///////////////Duomenu ivedimas/////////////////////
-    if(duomenu_ivedimas == "ivesti")
+    if(duomenu_ivedimas == 'i')
     {
         F_duomenu_ivedimas_listas(kas, studentas);
         if (strategija == 3)

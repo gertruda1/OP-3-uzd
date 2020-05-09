@@ -1,15 +1,27 @@
 #ifndef ANTRASTES2_H_INCLUDED
 #define ANTRASTES2_H_INCLUDED
 
-class student1
+class zmogus
+{  
+    protected:
+        std::string vardas_, pavarde_;
+        inline zmogus(): vardas_("Vardenis"), pavarde_("Pavardenis") {}
+};
+
+class student1 : protected zmogus
 {
     private:
-        std::string vardas_, pavarde_;
         double galutinis_;
         std::string grupe_;
     public:
-        inline student1() : vardas_("Vardenis"), pavarde_("Pavardenis"), galutinis_(10.0), grupe_("kietiakai") { 
-            }
+        inline student1() : zmogus{}, galutinis_(10.0), grupe_("kietiakai") {}
+        student1(const student1& a)
+        {
+            galutinis_ = a.galutinis_;
+            grupe_ = a.grupe_;
+            vardas_ = a.vardas_;
+            pavarde_ = a.pavarde_;
+        }
         student1& operator = (const student1 &a){ 
             if(&a == this) return *this;
             vardas_ = a.vardas_;
@@ -17,15 +29,17 @@ class student1
             galutinis_ = a.galutinis_;
             return *this;
              }
-        inline std::string vardas() const { return vardas_;} // get'eriai
-        inline std::string pavarde() const { return pavarde_; } // get'eriai
+
+        virtual inline std::string vardas() const { return vardas_;} // get'eriai
+        virtual inline std::string pavarde() const { return pavarde_; } // get'eriai
+        virtual void setVardas (std::string vard) { vardas_ = vard; } // set'eriai
+        virtual void setPavarde (std::string pavard) { pavarde_ = pavard; } // set'eriai
+
         inline double galutinis() const { return galutinis_; } // get'eriai
         inline std::string grupe() const { return grupe_; } // get'eriai
         void galBalas(double ndvid, int egz) { galutinis_ = 0.4 *ndvid + 0.6 * egz; } // set'eriai
         void galBalas(std::vector<int> nd_rez, double (*f)(std::vector<int>), int egz) {
             galutinis_ = 0.4 * (*f)(nd_rez) + 0.6 * egz; } // set'eriai
-        void setVardas (std::string vard) { vardas_ = vard; } // set'eriai
-        void setPavarde (std::string pavard) { pavarde_ = pavard; } // set'eriai
         void setGrupe (std::string a) { grupe_ = a; } // set'eriai
 
         inline friend bool operator==(const student1& a, const student1& b) { return a.vardas_ == b.vardas_ && a.pavarde_ == b.pavarde_ &&
