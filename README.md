@@ -97,3 +97,11 @@ laikas yra matuojamas sekundėmis. Namų darbų kiekis sugeneruotuose failuose -
 Programos patobulinimai:
  * Vietoje turimos vienos 'student1' klasės sukurtos dvi: bazinė klasė 'zmogus', skirta bendrai aprašyti žmogų ir iš jos išvestinė (derived) klasė - 'student1'.
  * Padaryta, kad žmogui skirta bazinė klasė būtų abstrakčioji klasė, t.y. nebūtų galima sukurti žmogaus ('zmogus') tipo objektų, o tik objektus iš jos išvestinės klasės ('student1').
+ 
+ [**v2.0**](https://github.com/gertruda1/OP-3-uzd/releases/tag/v2.0)
+ 
+ Galutinė programos versija. Atnaujinimai:
+
+ * Sukurta dokumentacija naudojant Doxygen.
+ * Realizuotas Unit Tests naudojant C++ Unit testų framework'ą Catch.
+ * Sukurtais testais patikrintos medianos radimo bei rikiavimo funkcijos.
