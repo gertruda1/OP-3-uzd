@@ -130,7 +130,7 @@ int &koki_faila_generuoti, int &kiek_nd, int &strategija)
         std::cout<<"Ivestas netinkamas dydis, pasirinkite v ar m: ";
         std::cin>>kas;
 
-        if(kas=='v' && kas=='m' )
+        if(kas=='v' || kas=='m' )
         {
             break;
         }
@@ -147,7 +147,7 @@ int &koki_faila_generuoti, int &kiek_nd, int &strategija)
         std::cout<<"Ivestas netinkamas dydis, pasirinkite t arba n: ";
         std::cin>>ar_generuoti;
 
-        if(ar_generuoti == 't' && ar_generuoti == 'n' )
+        if(ar_generuoti == 't' || ar_generuoti == 'n' )
         {
             break;
         }
@@ -182,7 +182,7 @@ int &koki_faila_generuoti, int &kiek_nd, int &strategija)
             std::cout<<"Ivestas netinkamas dydis, pasirinkite n arba i: ";
             std::cin>>duomenu_ivedimas;
 
-            if(duomenu_ivedimas == 'n' && duomenu_ivedimas == 'i')
+            if(duomenu_ivedimas == 'n' || duomenu_ivedimas == 'i')
             {
                 break;
             }
@@ -266,7 +266,7 @@ void F_duomenu_ivedimas(double ndsum, int egz, double ndvid, char kas, std::vect
 
             std::vector<int> vektorius;
                 int nd;
-                int kiek = 0;
+                double kiek = 0;
 
             if (kaip == 2)
 
@@ -407,9 +407,9 @@ void koks_konteineris (char& simbolis, char pirmas, char antras, char trecias)
 
 void vektorius()
 {
-    double ndvid, ndsum = 0;
+    double ndvid = 0, ndsum = 0;
     char kas, ar_generuoti, duomenu_ivedimas;
-    int koki_faila_generuoti, egz, kiek_nd, strategija;
+    int koki_faila_generuoti, egz = 0, kiek_nd, strategija;
     std::vector<student1> studentas;
     pirmine_apklausa(kas, ar_generuoti, duomenu_ivedimas, koki_faila_generuoti, kiek_nd, strategija);
     

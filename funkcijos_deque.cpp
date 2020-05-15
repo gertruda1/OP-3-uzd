@@ -151,7 +151,7 @@ void F_duomenu_ivedimas_deque (double ndsum, int egz, double ndvid, char kas, st
 
             std::deque<int> vektorius;
                 int nd;
-                int kiek = 0;
+                double kiek = 0;
 
             if (kaip == 2)
 
@@ -280,9 +280,9 @@ void spausdinimas_deque(std::deque<student> kiet, std::deque<student> vargs, cha
 
 void deque()
 {
-    double ndvid, ndsum = 0;
+    double ndvid = 0, ndsum = 0;
     char kas, ar_generuoti, duomenu_ivedimas;
-    int koki_faila_generuoti, egz, kiek_nd, strategija;
+    int koki_faila_generuoti, egz = 0, kiek_nd, strategija;
     std::deque<student> studentas;
     pirmine_apklausa(kas, ar_generuoti, duomenu_ivedimas, koki_faila_generuoti, kiek_nd, strategija);
     
