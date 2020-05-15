@@ -30,13 +30,14 @@ class student1 : protected zmogus
             return *this;
              }
 
-        virtual inline std::string vardas() const { return vardas_;} // get'eriai
-        virtual inline std::string pavarde() const { return pavarde_; } // get'eriai
-        virtual void setVardas (std::string vard) { vardas_ = vard; } // set'eriai
-        virtual void setPavarde (std::string pavard) { pavarde_ = pavard; } // set'eriai
 
+        virtual inline std::string vardas() const { return vardas_; } // get'eriai
+        virtual inline std::string pavarde() const { return pavarde_; } // get'eriai
         inline double galutinis() const { return galutinis_; } // get'eriai
         inline std::string grupe() const { return grupe_; } // get'eriai
+
+        virtual void setVardas(std::string vard) { vardas_ = vard; } // set'eriai
+        virtual void setPavarde(std::string pavard) { pavarde_ = pavard; } // set'eriai
         void galBalas(double ndvid, int egz) { galutinis_ = 0.4 *ndvid + 0.6 * egz; } // set'eriai
         void galBalas(std::vector<int> nd_rez, double (*f)(std::vector<int>), int egz) {
             galutinis_ = 0.4 * (*f)(nd_rez) + 0.6 * egz; } // set'eriai
@@ -56,7 +57,7 @@ class student1 : protected zmogus
 struct student
 {
     std::string vardas, pavarde;
-    double galutinis;
+    double galutinis = 0;
     std::string grupe;
 };
 

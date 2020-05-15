@@ -164,7 +164,7 @@ void F_duomenu_ivedimas_listas(char kas, std::list<student> &studentas)
         ArSkaiciusTinkamas(kaip, 1,2);
 
         student stud;
-        int egz;
+        int egz = 0;
         for (int i = 0; i < m; i++)
         {
             std::cout << "Iveskite "<< i + 1 << " studento varda ir pavarde " << std::endl;
